@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>spfoods</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hm/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+
+<style>
+
+
+
+  .abcd{
+    height: 100;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+</style>
+</head>
+<body id="top">
+
+
+    <!-- ################################################################################################ -->
+
+    <!-- ################################################################################################ -->
+  </div>
+  <!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+<!--<div class="category">-->
+<!--  {% for i in ct %}-->
+<!--  <b style="color:white">-->
+<!--    <a href={{i.get_url}}>{{i.name}}</a><br>-->
+<!--  </b>-->
+<!--  {% endfor %}-->
+<!--</div>-->
+<div class="wrapper row3">
+
+
+
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+
+      <section id="introblocks">
+          <ul class="nospace group btmspace-80"><br><br><br><br><br>
+
+       {% for i in pr %}
+            <li class="one_third">
+          <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="height: 350px; width: 350px;"></a>
+            <figcaption>
+              <h6 class="heading">{{i.name}}</h6>
+<!--              <p align="justify">{{i.desc|truncatewords:20}}</p>-->
+                <br>
+<!--                <p>Price: {{i.price}}Rs</p>-->
+              <br>
+<!--              <p>Stock Left: {{i.stock}}</p>-->
+            </figcaption>
+          </figure>
+        </li>
+            {% endfor %}
+
+      </ul>
+    </section>
+  </main>
+  </div>
+
+<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="{% static '/hm/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.mobilemenu.js' %}"></script>
+</body>
+</html>
+{% endblock %}

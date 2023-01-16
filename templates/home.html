@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>spfoods</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hm/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+
+<style>
+
+
+  .abcd{
+    height: 100;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  * {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  color:black;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #03058c;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #03058c;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+
+
+</style>
+</head>
+<body id="top">
+
+
+
+<div class="abcd" style="background-image:url({% static 'hm/onlineshopping.jpg' %});">
+  <!-- ################################################################################################ -->
+
+    <div id="pageintro" class="hoc clear">
+
+        <article>
+      <h3 class="heading">Quality Food Items</h3>
+      <p>Register with us and have quality food items at your door step</p>
+
+        </article>
+<br><br>
+        <!-- ################################################################################################ -->
+           <form class="example" action="{% url 'search' %}" style="margin:auto;max-width:300px">
+           <input type="text" placeholder="Search.." name="q">
+           <button type="submit"><i class="fa fa-search"></i></button>
+           </form>
+        <!-- ################################################################################################ -->
+    </div>
+    </div>
+<!-- ################################################################################################ -->
+
+
+<div class="wrapper row3">
+    <main class="hoc container clear">
+             <section id="introblocks">
+
+
+
+    <!-- main body -->
+
+               <br><br><br><br><br><br>
+
+                      <ul class="nospace group btmspace-80">
+
+                        {% for i in pg.object_list %}
+                           <li class="one_third">
+                               <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="height: 300px; width: 300px;" border="5"></a>
+                                     <figcaption>
+                                        <h6 class="heading">{{i.name}}</h6><br><br>
+
+                                   </figcaption>
+                                   </figure>
+                                   </li>  {% endfor %}
+
+
+
+
+                 <li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <img src="{% static 'hm/summer.jpg' %}" style="height:700px;width:250px;" ></li>
+
+
+
+
+                           </ul>
+
+                 <br><br>
+
+
+                <center>
+                    {% for p in pg.paginator.page_range %}
+                    <a href="?page={{p}}" class="btn btn-light btn-sm {% if pg.number == p %} active {% endif %}">{{p}}</a>
+                    {% endfor %}
+                </center>
+
+             </section>
+         </main>
+
+</div>
+
+<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="{% static '/hm/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.mobilemenu.js' %}"></script>
+
+</body>
+</html>
+{% endblock %}

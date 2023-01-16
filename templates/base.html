@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>spfoods</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hm/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+
+
+  <style>
+.dropbtn {
+  background-color:#03058c;
+  color: orange;
+  padding: 10px;
+  font-size: 20px;
+  font-family: verdana;
+  border: None;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  padding-left:10px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #03058c}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #03058c;
+}
+  </style>
+
+
+
+
+</head>
+<body id="top">
+
+<div  style="background-color:#03058c;">
+  <!-- ################################################################################################ -->
+<!--  <div class="wrapper row0">-->
+<!--    <div id="topbar" class="hoc clear">-->
+<!--      <div class="fl_left">-->
+
+<!--      </div>-->
+<!--      <div class="fl_right">-->
+<!--        &lt;!&ndash; ################################################################################################ &ndash;&gt;-->
+<!--        <ul class="nospace">-->
+
+
+<!--        </ul>-->
+<!--        &lt;!&ndash; ################################################################################################ &ndash;&gt;-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+      <div id="logo" class="fl_left">
+        <!-- ################################################################################################ -->
+          <p style="color:white; font-family:tahoma;" ><img src="{% static 'hm/spfoods.jpg' %}" style="height:50px;width:50px;"><font size="5"> <b>SP FOODS</b></font></p>
+      </div>
+
+        <!-- ################################################################################################ -->
+      <nav id="mainav" class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+          <li class="active"><a href="/" style="color:white;"><b>Home</b></a></li>
+
+              <li class="active"><a href="{% url 'cartdetails' %}" style="color:white;"><i class="fa fa-shopping-cart" style="font-size:28px;"></i>{{itc}}</a></li>
+                 {% if user.is_authenticated %}
+                  <li>Hai {{user.username}}</li>
+            <li class="active"><a href="{% url 'logout' %}" style="color:white;"><b>Logout</b></a></li>
+                    {% else %}
+            <li class="active"><a href="{% url 'login' %}" style="color:white;"><b>Login</b></a></li>
+            <li class="active"><a href="{% url 'register' %}" style="color:white;"><b>Register</b></a></li>
+                        {% endif %}
+
+
+                         <div class="dropdown">
+                             <button class="dropbtn" style="color:white;"><b>Filter</b></button>
+                             <div class="dropdown-content">
+                               <a href="/"><b>All Products</b></a>
+                                 {% for i in ct %}
+                                <b style="color:white">
+                                <a href={{i.get_url}}>{{i.name}}</a><br>
+                                </b>
+                                  {% endfor %}
+                             </div>
+                         </div>
+        </ul>
+
+      </nav>
+    </header>
+  </div>
+</div>
+{% block content %}
+{% endblock %}
+</body></html>
